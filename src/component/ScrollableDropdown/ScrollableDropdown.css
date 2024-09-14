@@ -1,0 +1,10 @@
+.subtitle{ 
+    margin-bottom:30px
+}
+.component { 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+  }

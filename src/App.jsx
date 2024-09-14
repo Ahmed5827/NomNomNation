@@ -1,10 +1,11 @@
+import Home from "./component/Home/Home"
 
 
 function App() {
 
   return (
     <>
-      <p>hiyya</p>
+      <Home></Home>
     </>
   )
 }
