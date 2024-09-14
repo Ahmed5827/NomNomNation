@@ -1,28 +1,14 @@
-import { useEffect, useState } from "react";
-import filtredMealData from "../../services/filtredMealData"; // Adjust the path as needed
+import {  useState } from "react";
+
 import ScrollableDropdown from "../ScrollableDropdown/ScrollableDropdown";
 import Region from "../../Data/DropDown/Region";
 import Category from "../../Data/DropDown/Category";
-import "./Home.css"
+import "./SearchByIngredient.css"
 
-function Home() {
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
+function SearchByIngredient() {
+
   const [Regionselected, setRegion] = useState("");
   const [Categoryselected, setCategory] = useState("");
-  useEffect(() => {
-    // Call the API function when the component mounts
-    const loadData = async () => {
-      try {
-        const result = await filtredMealData([], "American", "");
-        setData(result);
-      } catch (err) {
-        setError(err);
-      }
-    };
-
-    loadData();
-  }, []); // Empty dependency array means this effect runs once on mount
 
   const handleSelectRegion = (item) => {
     setRegion(item.label);
@@ -42,8 +28,9 @@ function Home() {
             <i>{"What's cooking good looking"}</i>😉
           </b>
         </small>
-        <div>
-          <input></input>
+        <div className="searchbar">
+          <input placeholder="search bar instead of me"></input>
+          <a href="" >Search by name</a>
         </div>
         <div className="filters">
           <ScrollableDropdown
@@ -59,17 +46,12 @@ function Home() {
           />
         </div>
       </div>
-      <div>{error && <p>Error: {error.message}</p>}</div>
+      <div></div>
     </div>
   );
 }
 
-/*
-{data ? (
-        <pre>{JSON.stringify(data, null, 2)}</pre>
-      ) : (
-        <p>Loading...</p>
-      )}
+//search bar needs to be done 
+//api call + display the data
 
-*/
-export default Home;
+export default SearchByIngredient;
