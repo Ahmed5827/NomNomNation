@@ -16,6 +16,7 @@ function Home() {
         <Route path="/Meal" element={<Meal></Meal>} />
         <Route path="*" element={<p>Not Found</p>} />
       </Routes>
+      
     </>
   );
 }

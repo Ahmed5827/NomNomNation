@@ -1,7 +1,9 @@
 import "./LuckyButton.css"
 import { GiShamrock } from "react-icons/gi";
 import fetchRandomMeal from "../../services/fetchRandomMeal";
+import { useNavigate } from "react-router-dom";
 function LuckyButton(){
+    const navigate = useNavigate();
 
     const handleClick = async () => {
         try {
@@ -14,7 +16,7 @@ function LuckyButton(){
 
 
     return(<>
-        <button id="LuckyButton"> <GiShamrock /></button>
+        <button id="LuckyButton" onClick={handleClick}> <GiShamrock /></button>
         
     </>)
 }
