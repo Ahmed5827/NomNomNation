@@ -1,20 +1,46 @@
-.filters{
+.filters {
     display: flex;
     gap: 20px;
     margin-top: 2%;
 }
-.top{
+
+.top {
     margin-top: 2%;
     display: flex;
     flex-direction: column;
-    justify-content: center; 
-    align-items: center; 
+    justify-content: center;
+    align-items: center;
 }
 
-.searchbar{
+.searchbar {
     margin-top: 1%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
+}
+
+.input-container {
+    display: flex;
+    border: 1px solid rgb(153, 153, 153);
+    border-radius: 24px;
+    overflow: hidden;
+
+
+    input {
+        border: none;
+        padding-left: 14px;
+        color: #bd7313;
+    }
+}
+
+.search-icon {
+    background-color: #e78c16;
+    padding: 3px 4px;
+    overflow: hidden;
+
+    img {
+        object-fit: cover;
+        height: 30px;
+    }
 }

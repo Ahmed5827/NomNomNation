@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import ScrollableDropdown from "../ScrollableDropdown/ScrollableDropdown";
 import Region from "../../Data/DropDown/Region";
@@ -29,7 +29,12 @@ function SearchByIngredient() {
           </b>
         </small>
         <div className="searchbar">
-          <input placeholder="search bar instead of me"></input>
+          <div className="input-container">
+            <input type="text" name="name-search" id="name-search-input" />
+            <div className="search-icon">
+              <img src="search-icon.svg" alt="search" />
+            </div>
+          </div>
           <Link to={"/SearchByName"} >Search by meal</Link>
         </div>
         <div className="filters">
