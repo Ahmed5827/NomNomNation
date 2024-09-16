@@ -1,4 +1,3 @@
-// ScrollableDropdown.jsx
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -16,10 +15,7 @@ const ScrollableDropdown = ({ items, defaultText, onSelect }) => {
 
   return (
     <Dropdown>
-      <Dropdown.Toggle
-        variant="success"
-        id="dropdown-basic"
-      >
+      <Dropdown.Toggle variant="success" id="dropdown-basic">
         {selectedItem} {/* Display the currently selected item */}
       </Dropdown.Toggle>
 
@@ -30,14 +26,26 @@ const ScrollableDropdown = ({ items, defaultText, onSelect }) => {
         }}
       >
         {items.length > 0 ? (
-          items.map((item, index) => (
+          <>
+            {/* First item with a line underneath */}
             <Dropdown.Item
-              key={index}
-              onClick={() => handleSelect(item)} // Set the selected item
+              key={0}
+              onClick={() => handleSelect(items[0])}
+              className="first-item"
             >
-              {item.label}
+              {items[0].label}
             </Dropdown.Item>
-          ))
+            <div className="dropdown-divider"></div> {/* Line divider */}
+            {/* Remaining items */}
+            {items.slice(1).map((item, index) => (
+              <Dropdown.Item
+                key={index + 1}
+                onClick={() => handleSelect(item)}
+              >
+                {item.label}
+              </Dropdown.Item>
+            ))}
+          </>
         ) : (
           <Dropdown.Item disabled>No items available</Dropdown.Item>
         )}
@@ -53,12 +61,12 @@ ScrollableDropdown.propTypes = {
     })
   ).isRequired,
   defaultText: PropTypes.string,
-  onSelect: PropTypes.func
+  onSelect: PropTypes.func,
 };
 
 ScrollableDropdown.defaultProps = {
   defaultText: 'Select from here',
-  onSelect: null
+  onSelect: null,
 };
 
 export default ScrollableDropdown;
