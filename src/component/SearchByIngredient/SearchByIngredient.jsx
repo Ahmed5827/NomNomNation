@@ -30,7 +30,7 @@ function SearchByIngredient() {
         </small>
         <div className="searchbar">
           <input placeholder="search bar instead of me"></input>
-          <a href="" >Search by name</a>
+          <a href="" >Search by meal</a>
         </div>
         <div className="filters">
           <ScrollableDropdown

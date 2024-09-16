@@ -1,15 +1,17 @@
-import LuckyButton from "./component/LuckyButton/LuckyButton"
-import SearchByIngredient from "./component/SearchByIngredient/SearchByIngredient"
+import { BrowserRouter } from "react-router-dom";
+import Home from "./component/Home/Home";
+import LuckyButton from "./component/LuckyButton/LuckyButton";
 
 function App() {
-
   return (
     <>
-      <SearchByIngredient/>
-      <LuckyButton></LuckyButton>
-      
+      <BrowserRouter>
+        <Home />
+      </BrowserRouter>
+
+      <LuckyButton />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
