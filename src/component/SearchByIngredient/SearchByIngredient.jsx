@@ -1,5 +1,5 @@
 import {  useState } from "react";
-
+import { Link } from "react-router-dom";
 import ScrollableDropdown from "../ScrollableDropdown/ScrollableDropdown";
 import Region from "../../Data/DropDown/Region";
 import Category from "../../Data/DropDown/Category";
@@ -30,7 +30,7 @@ function SearchByIngredient() {
         </small>
         <div className="searchbar">
           <input placeholder="search bar instead of me"></input>
-          <a href="" >Search by meal</a>
+          <Link to={"/SearchByName"} >Search by meal</Link>
         </div>
         <div className="filters">
           <ScrollableDropdown

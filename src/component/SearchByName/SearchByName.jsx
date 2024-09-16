@@ -1,4 +1,8 @@
+import { Link } from "react-router-dom";
+
+
 function SearchByName(){
+
 
     return (
         <div>
@@ -13,7 +17,7 @@ function SearchByName(){
             </small>
             <div className="searchbar">
               <input placeholder="search bar instead of me"></input>
-              <a href="" >Search by ingredient</a>
+              <Link to={"/SearchByIngredient"}>Search by ingredient</Link>
             </div>
 
           </div>
