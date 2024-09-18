@@ -7,7 +7,7 @@ import "./SearchByIngredient.css";
 import Ingredients from "../../Data/SearchRecomondation/Ingredients";
 import filtredMealData from "./../../services/filtredMealData";
 import MealCard from "../Card/Card";
-import Pagination from 'react-bootstrap/Pagination';
+import Pagination from "react-bootstrap/Pagination";
 
 function SearchByIngredient() {
   const [Regionselected, setRegion] = useState("");
@@ -178,11 +178,7 @@ function SearchByIngredient() {
         </div>
       </div>
       <div className="pagination">
-      
-          <Pagination>{paginationItems}</Pagination>
-        
-          
-        
+        {totalPages > 1 && <Pagination>{paginationItems}</Pagination>}
       </div>
     </div>
   );
