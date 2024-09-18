@@ -5,9 +5,8 @@ import Region from "../../Data/DropDown/Region";
 import Category from "../../Data/DropDown/Category";
 import "./SearchByIngredient.css";
 import Ingredients from "../../Data/SearchRecomondation/Ingredients";
-import filtredMealData from './../../services/filtredMealData';
+import filtredMealData from "./../../services/filtredMealData";
 import MealCard from "../Card/Card";
-
 
 function SearchByIngredient() {
   const [Regionselected, setRegion] = useState("");
@@ -15,6 +14,24 @@ function SearchByIngredient() {
   const [Ingredientselected, setIngredient] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [Meals, setMeals] = useState([]);
+  const [DisplayedMeals, setDisplayedMeals] = useState([]);
+
+  const ITEMS_PRE_PAGE = 8;
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // Update displayed meals based on current page and meals
+  useEffect(() => {
+    const startIndex = (currentPage - 1) * ITEMS_PRE_PAGE;
+    const endIndex = startIndex + ITEMS_PRE_PAGE;
+    setDisplayedMeals(Meals.slice(startIndex, endIndex));
+  }, [Meals, currentPage]);
+
+  // Pagination button click handler
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const totalPages = Math.ceil(Meals.length / ITEMS_PRE_PAGE);
 
   const handleSelectRegion = (item) => {
     if (item.label === "Region") {
@@ -56,15 +73,17 @@ function SearchByIngredient() {
 
   const handleSearch = async () => {
     try {
-        const mealData = await filtredMealData(Categoryselected,Regionselected,Ingredientselected); // API call to get random recipe (you will implement fetchRandomMeal)
-        setMeals((mealData.meals)?mealData.meals:[]);
-        console.log(Meals)
+      const mealData = await filtredMealData(
+        Categoryselected,
+        Regionselected,
+        Ingredientselected
+      ); // API call to get random recipe (you will implement fetchRandomMeal)
+      setMeals(mealData.meals ? mealData.meals : []);
+      console.log(Meals);
     } catch (error) {
-        console.error("Error fetching meals:", error);
+      console.error("Error fetching meals:", error);
     }
-};
-
-
+  };
 
   const handleSuggestionClick = (suggestion) => {
     setIngredient(suggestion);
@@ -94,21 +113,24 @@ function SearchByIngredient() {
               autoComplete="off"
             />
             <div className="search-icon">
-              <img src="search-icon.svg" alt="search" onClick={handleSearch}/>
+              <img src="search-icon.svg" alt="search" onClick={handleSearch} />
             </div>
           </div>
-          {suggestions.length > 0 && (<div><small>did you mean ? </small>
-            <ul className="suggestions-list">
-              {suggestions.map((suggestion, index) => (
-                <li
-                  key={index}
-                  onClick={() => handleSuggestionClick(suggestion)}
-                >
-                  {suggestion}
-                </li>
-              ))}
-            </ul>
-            </div>)}
+          {suggestions.length > 0 && (
+            <div>
+              <small>did you mean ? </small>
+              <ul className="suggestions-list">
+                {suggestions.map((suggestion, index) => (
+                  <li
+                    key={index}
+                    onClick={() => handleSuggestionClick(suggestion)}
+                  >
+                    {suggestion}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           <Link to={"/SearchByName"}>Search by meal</Link>
         </div>
         <div className="filters">
@@ -126,21 +148,32 @@ function SearchByIngredient() {
         </div>
       </div>
       <div>
-        <div className="search" ><h3 >{Meals.length !==0 && Meals.length + " Search Results :"}</h3></div>
+        <div className="search">
+          <h3>{Meals.length !== 0 && Meals.length + " Search Results :"}</h3>
+        </div>
         <div className="cards">
-  {Meals.map(M => (
-    <MealCard 
-      key={M.idMeal} 
-      title={M.strMeal} 
-      text="View Recepie" 
-      imageUrl={M.strMealThumb}
-      mealid={M.idMeal}
-     
-    />
-  ))}
-</div>
-
+          {DisplayedMeals.map((M) => (
+            <MealCard
+              key={M.idMeal}
+              title={M.strMeal}
+              text="View Recepie"
+              imageUrl={M.strMealThumb}
+              mealid={M.idMeal}
+            />
+          ))}
+        </div>
       </div>
+      <div className="pagination">
+          {Array.from({ length: totalPages }, (_, index) => (
+            <button
+              key={index + 1}
+              onClick={() => handlePageChange(index + 1)}
+              className={currentPage === index + 1 ? 'active' : ''}
+            >
+              {index + 1}
+            </button>
+          ))}
+        </div>
     </div>
   );
 }
