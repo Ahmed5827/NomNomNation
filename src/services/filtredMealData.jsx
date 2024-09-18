@@ -1,6 +1,6 @@
 import axios from "axios";
 // Function to make a single API call with optional parameters (c, a, i)
-async function filtredMealData(category = [], area = null, ingredient = null) {
+async function filtredMealData(category = null, area = null, ingredient = null) {
     try {
       // Base URL
       const baseUrl = 'https://www.themealdb.com/api/json/v1/1/filter.php';
@@ -9,8 +9,8 @@ async function filtredMealData(category = [], area = null, ingredient = null) {
       const params = new URLSearchParams();
   
       // Add category parameter if provided
-      if (category.length) {
-        category.forEach(value => params.append('c', value));
+      if (category) {
+        params.append('c', category);
       }
   
       // Add area parameter if provided
