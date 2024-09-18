@@ -14,17 +14,22 @@ function SearchByIngredient() {
   const [Categoryselected, setCategory] = useState("");
   const [Ingredientselected, setIngredient] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-  const [Meals, setMeals] = useState([]);
+  const [Meals, setMeals] = useState(null); // null to handle no results initially
   const [DisplayedMeals, setDisplayedMeals] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const ITEMS_PRE_PAGE = 8;
+  const ITEMS_PER_PAGE = 8;
   const [currentPage, setCurrentPage] = useState(1);
 
   // Update displayed meals based on current page and meals
   useEffect(() => {
-    const startIndex = (currentPage - 1) * ITEMS_PRE_PAGE;
-    const endIndex = startIndex + ITEMS_PRE_PAGE;
-    setDisplayedMeals(Meals.slice(startIndex, endIndex));
+    if (Meals && Meals.length > 0) {
+      const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+      const endIndex = startIndex + ITEMS_PER_PAGE;
+      setDisplayedMeals(Meals.slice(startIndex, endIndex));
+    } else {
+      setDisplayedMeals([]); // Reset if no meals
+    }
   }, [Meals, currentPage]);
 
   // Pagination button click handler
@@ -32,7 +37,7 @@ function SearchByIngredient() {
     setCurrentPage(pageNumber);
   };
 
-  const totalPages = Math.ceil(Meals.length / ITEMS_PRE_PAGE);
+  const totalPages = Math.ceil((Meals ? Meals.length : 0) / ITEMS_PER_PAGE);
 
   const handleSelectRegion = (item) => {
     if (item.label === "Region") {
@@ -86,16 +91,19 @@ function SearchByIngredient() {
   }, [Ingredientselected]);
 
   const handleSearch = async () => {
+    setLoading(true); // Start loading
     try {
       const mealData = await filtredMealData(
         Categoryselected,
         Regionselected,
         Ingredientselected
-      ); // API call to get random recipe (you will implement fetchRandomMeal)
-      setMeals(mealData.meals ? mealData.meals : []);
-      console.log(Meals);
+      );
+      setMeals(mealData.meals ? mealData.meals : []); // handle the case when meals is null
+      setCurrentPage(1); // Reset to the first page after search
     } catch (error) {
       console.error("Error fetching meals:", error);
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
 
@@ -109,9 +117,7 @@ function SearchByIngredient() {
       <div className="container top">
         <h1>Find Meals For Your Ingredient</h1>
         <small>
-          {" "}
           <b>
-            {" "}
             <i>{"What's cooking good looking"}</i>😉
           </b>
         </small>
@@ -132,7 +138,7 @@ function SearchByIngredient() {
           </div>
           {suggestions.length > 0 && (
             <div>
-              <small>did you mean ? </small>
+              <small>Did you mean?</small>
               <ul className="suggestions-list">
                 {suggestions.map((suggestion, index) => (
                   <li
@@ -161,22 +167,36 @@ function SearchByIngredient() {
           />
         </div>
       </div>
+
       <div>
-        <div className="search">
-          <h3>{Meals.length !== 0 && Meals.length + " Search Results :"}</h3>
-        </div>
-        <div className="cards">
-          {DisplayedMeals.map((M) => (
-            <MealCard
-              key={M.idMeal}
-              title={M.strMeal}
-              text="View Recepie"
-              imageUrl={M.strMealThumb}
-              mealid={M.idMeal}
-            />
-          ))}
-        </div>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <>
+            <div className="search">
+              <h3>
+                {Meals === null
+                  ? ""
+                  : Meals.length !== 0
+                  ? `${Meals.length} Search Results:`
+                  : "No Meal Matches these criteria"}
+              </h3>
+            </div>
+            <div className="cards">
+              {DisplayedMeals.map((M) => (
+                <MealCard
+                  key={M.idMeal}
+                  title={M.strMeal}
+                  text="View Recipe"
+                  imageUrl={M.strMealThumb}
+                  mealid={M.idMeal}
+                />
+              ))}
+            </div>
+          </>
+        )}
       </div>
+
       <div className="pagination">
         {totalPages > 1 && <Pagination>{paginationItems}</Pagination>}
       </div>
