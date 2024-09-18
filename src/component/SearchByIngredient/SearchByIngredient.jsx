@@ -7,6 +7,7 @@ import "./SearchByIngredient.css";
 import Ingredients from "../../Data/SearchRecomondation/Ingredients";
 import filtredMealData from "./../../services/filtredMealData";
 import MealCard from "../Card/Card";
+import Pagination from 'react-bootstrap/Pagination';
 
 function SearchByIngredient() {
   const [Regionselected, setRegion] = useState("");
@@ -40,6 +41,19 @@ function SearchByIngredient() {
       setRegion(item.label);
     }
   };
+
+  const paginationItems = [];
+  for (let number = 1; number <= totalPages; number++) {
+    paginationItems.push(
+      <Pagination.Item
+        key={number}
+        active={number === currentPage}
+        onClick={() => handlePageChange(number)}
+      >
+        {number}
+      </Pagination.Item>
+    );
+  }
 
   const handleSelectCategory = (item) => {
     if (item.label === "Category") {
@@ -164,16 +178,12 @@ function SearchByIngredient() {
         </div>
       </div>
       <div className="pagination">
-          {Array.from({ length: totalPages }, (_, index) => (
-            <button
-              key={index + 1}
-              onClick={() => handlePageChange(index + 1)}
-              className={currentPage === index + 1 ? 'active' : ''}
-            >
-              {index + 1}
-            </button>
-          ))}
-        </div>
+      
+          <Pagination>{paginationItems}</Pagination>
+        
+          
+        
+      </div>
     </div>
   );
 }

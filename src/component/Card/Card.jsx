@@ -14,7 +14,7 @@ function MealCard({ title, text, imageUrl , mealid }) {
         }
       };
   return (
-    <Card style={{ width: '22rem', height:'29rem' }}>
+    <Card style={{ width: '22rem', height:'31rem' }}>
       <Card.Img variant="top" src={imageUrl} />
       <Card.Body>
         <Card.Title>{title}</Card.Title>
