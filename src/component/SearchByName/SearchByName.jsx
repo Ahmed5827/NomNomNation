@@ -33,8 +33,14 @@ function SearchByName() {
   const handleSearch = async () => {
     setLoading(true); // Start loading
     try {
-      const mealData = await searchMeals(searchedMeal);
-      setMeals(mealData.meals ? mealData.meals : []); // handle the case when meals is null
+      if (searchedMeal !== "") {
+        
+      
+        setMeals([]);
+        const mealData = await searchMeals(searchedMeal);
+        setMeals(mealData.meals ? mealData.meals : []);
+      }
+      // handle the case when meals is null
       setCurrentPage(1); // Reset to the first page after search
     } catch (error) {
       console.error("Error fetching meals:", error);
@@ -81,13 +87,10 @@ function SearchByName() {
               value={searchedMeal}
               onChange={handleInputChange}
               placeholder="Type to search..."
+              autoComplete="off"
             />
             <div className="search-icon">
-              <img
-                src="search-icon.svg"
-                alt="search"
-                onClick={handleSearch}
-              />
+              <img src="search-icon.svg" alt="search" onClick={handleSearch} />
             </div>
           </div>
           <Link to={"/SearchByIngredient"}>Search by ingredient</Link>
