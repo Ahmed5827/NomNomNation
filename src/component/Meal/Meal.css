@@ -1,0 +1,76 @@
+.container_meal {
+    display: flex;
+    flex-direction: row;
+    width: 90vw;
+    margin: 0 auto;
+
+
+    .product {
+        height: 100%;
+        padding: 50px 15px;
+        flex: 5;
+
+        /*background-color: rgba(108, 108, 211, 0.937);*/
+        .title {
+            margin: 0 0 50px 0;
+        }
+
+        .description {
+            margin-left: 50px;
+            line-height: 2;
+            font-size: 18px;
+        }
+
+        img {
+            margin: 0 auto;
+            position: relative;
+            left: 50%;
+            transform: translate(-50%, 0);
+            max-height: 400px;
+        }
+    }
+
+    .info_bubble {
+        min-height: 350px;
+        height: fit-content;
+        padding: 50px 60px;
+        flex: 1;
+        background-color: rgb(245, 245, 245);
+        border-radius: 1rem;
+        margin-top: 50px;
+    }
+
+    p {
+        margin-top: 50px;
+    }
+
+    .container_image {
+        position: relative;
+        display: inline-block;
+        transition: 0.2s ease-in;
+
+        .play_button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 40px;
+            transition: 0.4s ease-in-out
+        }
+
+        .play_button:hover {
+            height: 80px;
+        }
+    }
+
+    .container_image:hover {
+        transform: rotate(5deg);
+    }
+}
+
+.ingredient {
+    width: auto;
+    display: flex;
+    flex-direction: row;
+
+}
