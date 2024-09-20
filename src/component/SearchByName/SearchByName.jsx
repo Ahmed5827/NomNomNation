@@ -131,6 +131,9 @@ function SearchByName() {
                     : "No Meal Matches these criteria"}
               </h3>
             </div>
+            <div className="pagination">
+        {totalPages > 1 && <Pagination>{paginationItems}</Pagination>}
+      </div>
             <div className="cards">
               {displayedMeals.map((meal) => (
                 <MealCard

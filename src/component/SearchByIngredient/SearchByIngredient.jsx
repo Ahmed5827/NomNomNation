@@ -56,6 +56,7 @@ function SearchByIngredient() {
         key={number}
         active={number === currentPage}
         onClick={() => handlePageChange(number)}
+        
       >
         {number}
       </Pagination.Item>
@@ -204,6 +205,7 @@ function SearchByIngredient() {
           <p></p>
         ) : (
           <>
+          
             <div className="search">
               <h3>
                 {Meals === null
@@ -212,7 +214,11 @@ function SearchByIngredient() {
                   ? `${Meals.length} Search Results:`
                   : "No Meal Matches these criteria"}
               </h3>
+              
             </div>
+            <div className="pagination">
+        {totalPages > 1 && <Pagination>{paginationItems}</Pagination>}
+      </div>
             <div className="cards">
               {DisplayedMeals.map((M) => (
                 <MealCard
