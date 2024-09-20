@@ -1,72 +1,115 @@
 .container_meal {
-    display: flex;
-    flex-direction: row;
-    width: 90vw;
-    margin: 0 auto;
-    border-style: solid;
-    border-width: 1;
+    width: 70vw;
+    margin: 50px auto;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.5);
 
+    .general_info {
+        display: flex;
+        padding: 30px 50px;
 
-    .product {
-        height: 100%;
-        padding: 50px 15px;
-        flex: 5;
+        .container_image {
+            border-radius: 0.5rem;
+            overflow: hidden;
 
-        /*background-color: rgba(108, 108, 211, 0.937);*/
-        .title {
-            margin: 0 0 50px 0;
+            img {
+                margin: 0 auto;
+                position: relative;
+                left: 50%;
+                transform: translate(-50%, 0);
+                max-height: 400px;
+                height: 150px;
+                object-fit: contain;
+            }
         }
 
-        .description {
-            margin-left: 50px;
-            line-height: 2;
-            font-size: 18px;
-        }
+        .meal_general_info {
+            display: flex;
+            flex-direction: column;
+            padding: 5px 40px;
 
-        img {
-            margin: 0 auto;
-            position: relative;
-            left: 50%;
-            transform: translate(-50%, 0);
-            max-height: 400px;
-        }
-    }
+            .title {
+                font-size: 36px;
+                font-weight: 600;
 
-    .info_bubble {
-        min-height: 350px;
-        height: fit-content;
-        padding: 50px 60px;
-        flex: 1;
-        background-color: rgb(245, 245, 245);
-        border-radius: 1rem;
-        margin-top: 50px;
-    }
+            }
 
-    p {
-        margin-top: 50px;
-    }
+            .tags {
+                small {
+                    margin: 0 5px;
+                    padding: 2px 4px;
+                    border-radius: 0.5rem;
+                    border: 1px solid #dee2e6;
+                    transition: 0.4s ease-in-out;
+                }
 
-    .container_image {
-        position: relative;
-        display: inline-block;
-        transition: 0.2s ease-in;
+                small:hover {
+                    background-color: #dee2e6;
+                }
+            }
 
-        .play_button {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            height: 40px;
-            transition: 0.4s ease-in-out
-        }
-
-        .play_button:hover {
-            height: 80px;
         }
     }
 
-    .container_image:hover {
-        transform: rotate(5deg);
+    .actual_cooking {
+        display: flex;
+
+        .product {
+            height: 100%;
+            width: 100%;
+            padding: 50px 15px 50px 30px;
+
+            /*background-color: rgba(108, 108, 211, 0.937);*/
+            .title {
+                margin: 0 0 50px 0;
+            }
+
+            .ingredients {
+                width: 250px;
+                margin: 10px 0 50px 30px;
+
+                .ingredient {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    line-height: 1.8;
+                    border: 1px solid #dee2e6;
+                    transition: 0.4s ease-out;
+                    cursor: pointer;
+                }
+
+                .ingredient:hover {
+                    border: 1px solid #989c9f;
+                }
+            }
+
+            .description {
+                margin-left: 50px;
+                line-height: 2;
+                font-size: 18px;
+            }
+
+        }
+
+        .directions {
+            min-height: 350px;
+            height: fit-content;
+            padding: 50px 60px;
+            /*background-color: rgb(245, 245, 245);*/
+            border-radius: 1rem;
+            margin-top: 50px;
+            max-width: 50%;
+
+
+        }
+
+        p {
+            margin-top: 50px;
+        }
+
+        .container_image:hover {
+            transform: rotate(5deg);
+        }
     }
 }
 
