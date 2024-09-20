@@ -15,7 +15,7 @@ const ScrollableDropdown = ({ items, defaultText, onSelect }) => {
 
   return (
     <Dropdown>
-      <Dropdown.Toggle variant="success" id="dropdown-basic">
+      <Dropdown.Toggle variant="secondary" id="dropdown-basic">
         {selectedItem} {/* Display the currently selected item */}
       </Dropdown.Toggle>
 
