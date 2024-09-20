@@ -4,6 +4,7 @@ import searchMeals from "./../../services/searchMeals";
 import MealCard from "../Card/Card"; // Assuming you have a MealCard component like in SearchByIngredient
 import Pagination from "react-bootstrap/Pagination"; // To handle pagination
 import "./SearchByName.css";
+import CookingLoader from "../CookingLoader/CookingLoader";
 
 function SearchByName() {
   const [searchedMeal, setSearchedMeal] = useState(""); // User's search input
@@ -99,7 +100,7 @@ function SearchByName() {
 
       <div>
         {loading ? (
-          <p>Loading...</p>
+<div className="search"> <CookingLoader></CookingLoader></div>
         ) : (
           <>
             <div className="search">

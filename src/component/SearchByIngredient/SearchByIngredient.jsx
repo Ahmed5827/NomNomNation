@@ -6,8 +6,11 @@ import Category from "../../Data/DropDown/Category";
 import "./SearchByIngredient.css";
 import Ingredients from "../../Data/SearchRecomondation/Ingredients";
 import filtredMealData from "./../../services/filtredMealData";
-import MealCard from "../Card/Card";
+import { ThreeDots } from "react-loader-spinner";
 import Pagination from "react-bootstrap/Pagination";
+import CookingLoader from "../CookingLoader/CookingLoader";
+
+import MealCard from './../Card/Card';
 
 function SearchByIngredient() {
   const [Regionselected, setRegion] = useState("");
@@ -169,10 +172,10 @@ function SearchByIngredient() {
 
       <div>
         {loading ? (
-          <p>Loading...</p>
+<p></p>
         ) : (
           <>
-            <div className="search">
+          <div className="search">
               <h3>
                 {Meals === null
                   ? ""
@@ -204,3 +207,6 @@ function SearchByIngredient() {
 }
 
 export default SearchByIngredient;
+
+
+/*   */
