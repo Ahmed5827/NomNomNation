@@ -35,8 +35,8 @@ function SearchByName() {
     setLoading(true); // Start loading
     try {
       if (searchedMeal !== "") {
-        
-      
+
+
         setMeals([]);
         const mealData = await searchMeals(searchedMeal);
         setMeals(mealData.meals ? mealData.meals : []);
@@ -72,6 +72,45 @@ function SearchByName() {
 
   return (
     <div>
+      <nav
+        className="navbar navbar-light"
+        style={{ "background-color": "rgb(51,51,51)" }}
+      >
+        <Link to={"/SearchByIngredient"} className="toname">
+          Search by Ingredient
+        </Link>
+
+        <div className="mx-auto">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <div className="searchbar">
+                <div
+                  className="input-container"
+                  style={{ position: "relative" }}
+                >
+                  <input
+                    type="text"
+                    name="name-search"
+                    id="name-search-input"
+                    onChange={handleInputChange}
+                    value={searchedMeal}
+                    placeholder="Type to search..."
+                    autoComplete="off"
+                    style={{ width: "350px" }}
+                  />
+                  <div className="search-icon">
+                    <img
+                      src="search-icon.svg"
+                      alt="search"
+                      onClick={handleSearch}
+                    />
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
       <div className="container top">
         <h1>Find ingredients For Your Meal</h1>
         <small>
@@ -80,27 +119,12 @@ function SearchByName() {
           </b>
         </small>
         <div className="searchbar">
-          <div className="input-container">
-            <input
-              type="text"
-              name="name-search"
-              id="name-search-input"
-              value={searchedMeal}
-              onChange={handleInputChange}
-              placeholder="Type to search..."
-              autoComplete="off"
-            />
-            <div className="search-icon">
-              <img src="search-icon.svg" alt="search" onClick={handleSearch} />
-            </div>
-          </div>
-          <Link to={"/SearchByIngredient"}>Search by ingredient</Link>
         </div>
       </div>
 
       <div>
         {loading ? (
-<div className="search"> <CookingLoader></CookingLoader></div>
+          <div className="search"> <CookingLoader></CookingLoader></div>
         ) : (
           <>
             <div className="search">
@@ -108,8 +132,8 @@ function SearchByName() {
                 {meals === null
                   ? ""
                   : meals.length !== 0
-                  ? `${meals.length} Search Results:`
-                  : "No Meal Matches these criteria"}
+                    ? `${meals.length} Search Results:`
+                    : "No Meal Matches these criteria"}
               </h3>
             </div>
             <div className="cards">
