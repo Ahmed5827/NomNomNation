@@ -6,11 +6,10 @@ import Category from "../../Data/DropDown/Category";
 import "./SearchByIngredient.css";
 import Ingredients from "../../Data/SearchRecomondation/Ingredients";
 import filtredMealData from "./../../services/filtredMealData";
-import { ThreeDots } from "react-loader-spinner";
 import Pagination from "react-bootstrap/Pagination";
-import CookingLoader from "../CookingLoader/CookingLoader";
 
-import MealCard from './../Card/Card';
+
+import MealCard from "./../Card/Card";
 
 function SearchByIngredient() {
   const [Regionselected, setRegion] = useState("");
@@ -116,6 +115,7 @@ function SearchByIngredient() {
 
   return (
     <div>
+    
       <div className="container top">
         <h1>Find Meals For Your Ingredient</h1>
         <small>
@@ -140,13 +140,16 @@ function SearchByIngredient() {
           </div>
           {suggestions.length > 0 && (
             <div className="dropdown show">
-              <ul className="dropdown-menu show" style={{ display: 'block', translate: '-60%' }}>
+              <ul
+                className="dropdown-menu show"
+                style={{ display: "block", translate: "-60%" }}
+              >
                 {suggestions.map((suggestion, index) => (
                   <li
                     key={index}
                     className="dropdown-item"
                     onClick={() => handleSuggestionClick(suggestion)}
-                    style={{ cursor: 'pointer' }}
+                    style={{ cursor: "pointer" }}
                   >
                     {suggestion}
                   </li>
@@ -172,10 +175,10 @@ function SearchByIngredient() {
 
       <div>
         {loading ? (
-<p></p>
+          <p></p>
         ) : (
           <>
-          <div className="search">
+            <div className="search">
               <h3>
                 {Meals === null
                   ? ""
@@ -208,5 +211,3 @@ function SearchByIngredient() {
 
 export default SearchByIngredient;
 
-
-/*   */
