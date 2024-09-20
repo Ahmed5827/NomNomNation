@@ -87,34 +87,35 @@ function Meal() {
             <div>
               <h2>Ingredients</h2>
               <ul className="ingredients list-group">
-                {Object.keys(ingredients).map((key) =>
-                  // Only render the list item if both the key and its associated value are not null/empty
-                  Meal?.meals[0]?.[key]?.trim() &&
-                  Meal?.meals[0]?.[ingredients[key]]?.trim() ? (
-                    <li className="ingredient list-group-item" key={key}>
-                      <div>
-                        {/* Display the key with a colon if it exists and is not empty */}
-                        {Meal?.meals[0]?.[key] &&
-                        Meal.meals[0][key].trim() !== ""
-                          ? `${Meal.meals[0][key]} :`
-                          : null}
-                      </div>
+                {Object.keys(ingredients).map(
+                  (key) =>
+                    // Only render the list item if both the key and its associated value are not null/empty
+                    Meal?.meals[0]?.[key]?.trim() &&
+                    Meal?.meals[0]?.[ingredients[key]]?.trim() ? (
+                      <li className="ingredient list-group-item" key={key}>
+                        <div>
+                          {/* Display the key with a colon if it exists and is not empty */}
+                          {Meal?.meals[0]?.[key] &&
+                          Meal.meals[0][key].trim() !== ""
+                            ? `${Meal.meals[0][key]} :`
+                            : null}
+                        </div>
 
-                      <div>
-                        {/* Display the ingredient or "As needed" if null/empty */}
-                        {Meal?.meals[0]?.[ingredients[key]] &&
-                        Meal.meals[0][ingredients[key]].trim()
-                          ? Meal.meals[0][ingredients[key]].trim().split(" ")
-                              .length > 2
-                            ? Meal.meals[0][ingredients[key]]
-                                .split(" ")
-                                .slice(1)
-                                .join(" ")
-                            : Meal.meals[0][ingredients[key]]
-                          : "As needed"}
-                      </div>
-                    </li>
-                  ) : null // Skip rendering if key or value is null/empty
+                        <div>
+                          {/* Display the ingredient or "As needed" if null/empty */}
+                          {Meal?.meals[0]?.[ingredients[key]] &&
+                          Meal.meals[0][ingredients[key]].trim()
+                            ? Meal.meals[0][ingredients[key]].trim().split(" ")
+                                .length > 2
+                              ? Meal.meals[0][ingredients[key]]
+                                  .split(" ")
+                                  .slice(1)
+                                  .join(" ")
+                              : Meal.meals[0][ingredients[key]]
+                            : "As needed"}
+                        </div>
+                      </li>
+                    ) : null // Skip rendering if key or value is null/empty
                 )}
               </ul>
             </div>

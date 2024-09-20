@@ -71,7 +71,7 @@
             }
 
             .ingredients {
-                width: 280px;
+                width: 100%;
                 margin: 10px 0 50px 30px;
 
                 .ingredient {
