@@ -8,7 +8,6 @@ import Ingredients from "../../Data/SearchRecomondation/Ingredients";
 import filtredMealData from "./../../services/filtredMealData";
 import Pagination from "react-bootstrap/Pagination";
 
-
 import MealCard from "./../Card/Card";
 
 function SearchByIngredient() {
@@ -115,61 +114,88 @@ function SearchByIngredient() {
 
   return (
     <div>
-    
-      <div className="container top">
-        <h1>Find Meals For Your Ingredient</h1>
-        <small>
-          <b>
-            <i>{"What's cooking good looking"}</i>😉
-          </b>
-        </small>
-        <div className="searchbar">
-          <div className="input-container" style={{ position: "relative" }}>
-            <input
-              type="text"
-              name="name-search"
-              id="name-search-input"
-              onChange={handleChange}
-              value={Ingredientselected}
-              placeholder="Type to search..."
-              autoComplete="off"
-            />
-            <div className="search-icon">
-              <img src="search-icon.svg" alt="search" onClick={handleSearch} />
-            </div>
-          </div>
-          {suggestions.length > 0 && (
-            <div className="dropdown show">
-              <ul
-                className="dropdown-menu show"
-                style={{ display: "block", translate: "-60%" }}
-              >
-                {suggestions.map((suggestion, index) => (
-                  <li
-                    key={index}
-                    className="dropdown-item"
-                    onClick={() => handleSuggestionClick(suggestion)}
-                    style={{ cursor: "pointer" }}
-                  >
-                    {suggestion}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-          <Link to={"/SearchByName"}>Search by meal</Link>
+      <nav
+        className="navbar navbar-light"
+        style={{ "background-color": "rgb(51,51,51)" }}
+      >
+        <Link to={"/SearchByName"} className="toname">
+          Search by meal
+        </Link>
+
+        <div className="mx-auto">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <div className="searchbar">
+                <div
+                  className="input-container"
+                  style={{ position: "relative" }}
+                >
+                  <input
+                    type="text"
+                    name="name-search"
+                    id="name-search-input"
+                    onChange={handleChange}
+                    value={Ingredientselected}
+                    placeholder="Type to search..."
+                    autoComplete="off"
+                    style={{ width: "350px" }}
+                  />
+                  <div className="search-icon">
+                    <img
+                      src="search-icon.svg"
+                      alt="search"
+                      onClick={handleSearch}
+                    />
+                  </div>
+                </div>
+                {suggestions.length > 0 && (
+                  <div className="dropdown show">
+                    <ul
+                      className="dropdown-menu show"
+                      style={{
+                        position: "absolute",
+                        top: "20%",
+                        left: "-20%",
+                        zIndex: 1000,
+                        display: "block",
+                        translate: "-110%",
+                      }}
+                    >
+                      {suggestions.map((suggestion, index) => (
+                        <li
+                          key={index}
+                          className="dropdown-item"
+                          onClick={() => handleSuggestionClick(suggestion)}
+                          style={{ cursor: "pointer" }}
+                        >
+                          {suggestion}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            </li>
+          </ul>
         </div>
+      </nav>
+      <div className="container top">
+        <h3>Filters</h3>
+
         <div className="filters">
+          <hr style={{ width: "40vw" }}></hr>
           <ScrollableDropdown
             items={Category}
             defaultText="Category"
             onSelect={handleSelectCategory}
           />
+
           <ScrollableDropdown
             items={Region}
             defaultText="Region"
             onSelect={handleSelectRegion}
           />
+          <hr style={{ width: "40vw" }}></hr>
         </div>
       </div>
 
@@ -210,4 +236,3 @@ function SearchByIngredient() {
 }
 
 export default SearchByIngredient;
-

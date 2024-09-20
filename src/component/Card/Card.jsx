@@ -19,7 +19,7 @@ function MealCard({ title, text, imageUrl , mealid }) {
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         
-        <Button variant="primary" onClick={() => handlegetrecepie(mealid)}>{text}</Button>
+        <Button variant="secondary" onClick={() => handlegetrecepie(mealid)}>{text}</Button>
       </Card.Body>
     </Card>
   );
