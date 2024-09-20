@@ -17,6 +17,7 @@ function SearchByIngredient() {
   const [Meals, setMeals] = useState(null); // null to handle no results initially
   const [DisplayedMeals, setDisplayedMeals] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [isSuggestionClicked, setIsSuggestionClicked] = useState(false); // New state
 
   const ITEMS_PER_PAGE = 8;
   const [currentPage, setCurrentPage] = useState(1);
@@ -70,25 +71,22 @@ function SearchByIngredient() {
 
   const handleChange = (event) => {
     setIngredient(event.target.value);
+    if (!isSuggestionClicked) {
+      fetchSuggestions(event.target.value); // Fetch suggestions only when typing, not after selection
+    }
+    setIsSuggestionClicked(false); // Reset after typing
   };
 
-  useEffect(() => {
-    const fetchSuggestions = async () => {
-      if (Ingredientselected.trim()) {
-        const allSuggestions = Ingredients;
-        const results = allSuggestions
-          .filter((item) =>
-            item.toLowerCase().startsWith(Ingredientselected.toLowerCase())
-          )
-          .slice(0, 6);
-        setSuggestions(results);
-      } else {
-        setSuggestions([]);
-      }
-    };
-
-    fetchSuggestions();
-  }, [Ingredientselected]);
+  const fetchSuggestions = (inputValue) => {
+    if (inputValue.trim()) {
+      const results = Ingredients.filter((item) =>
+        item.toLowerCase().startsWith(inputValue.toLowerCase())
+      ).slice(0, 6);
+      setSuggestions(results);
+    } else {
+      setSuggestions([]);
+    }
+  };
 
   const handleSearch = async () => {
     setLoading(true); // Start loading
@@ -108,8 +106,9 @@ function SearchByIngredient() {
   };
 
   const handleSuggestionClick = (suggestion) => {
-    setIngredient(suggestion);
-    setSuggestions([]);
+    setIngredient(suggestion); // Set input field with the clicked suggestion
+    setSuggestions([]); // Clear suggestions
+    setIsSuggestionClicked(true); // Mark that a suggestion was clicked
   };
 
   return (
@@ -137,13 +136,14 @@ function SearchByIngredient() {
             </div>
           </div>
           {suggestions.length > 0 && (
-            <div>
-              <small>Did you mean?</small>
-              <ul className="suggestions-list">
+            <div className="dropdown show">
+              <ul className="dropdown-menu show" style={{ display: 'block', translate: '-60%' }}>
                 {suggestions.map((suggestion, index) => (
                   <li
                     key={index}
+                    className="dropdown-item"
                     onClick={() => handleSuggestionClick(suggestion)}
+                    style={{ cursor: 'pointer' }}
                   >
                     {suggestion}
                   </li>
@@ -159,7 +159,6 @@ function SearchByIngredient() {
             defaultText="Category"
             onSelect={handleSelectCategory}
           />
-
           <ScrollableDropdown
             items={Region}
             defaultText="Region"
