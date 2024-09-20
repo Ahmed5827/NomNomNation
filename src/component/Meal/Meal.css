@@ -61,7 +61,7 @@
 
         .product {
             height: 100%;
-            width: 30%;
+            width: 50%;
             padding: 50px 15px 50px 30px;
             flex: 1;
 
@@ -71,7 +71,7 @@
             }
 
             .ingredients {
-                width: 250px;
+                width: 280px;
                 margin: 10px 0 50px 30px;
 
                 .ingredient {

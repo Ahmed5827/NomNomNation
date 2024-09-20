@@ -112,12 +112,7 @@ function SearchByName() {
         </div>
       </nav>
       <div className="container top">
-        <h1>Find ingredients For Your Meal</h1>
-        <small>
-          <b>
-            <i>{"What's cooking good looking"}</i>😉
-          </b>
-        </small>
+
         <div className="searchbar">
         </div>
       </div>
