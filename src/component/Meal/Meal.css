@@ -30,7 +30,7 @@
 
             .title {
                 font-size: 36px;
-                font-weight: 600;
+                font-weight: 9900;
 
             }
 
@@ -41,6 +41,7 @@
                     border-radius: 0.5rem;
                     border: 1px solid #dee2e6;
                     transition: 0.4s ease-in-out;
+                    cursor: pointer;
                 }
 
                 small:hover {
@@ -54,10 +55,15 @@
     .actual_cooking {
         display: flex;
 
+        h2 {
+            line-height: 2;
+        }
+
         .product {
             height: 100%;
-            width: 100%;
+            width: 30%;
             padding: 50px 15px 50px 30px;
+            flex: 1;
 
             /*background-color: rgba(108, 108, 211, 0.937);*/
             .title {
@@ -93,14 +99,14 @@
 
         .directions {
             min-height: 350px;
+            min-width: 70%;
             height: fit-content;
-            padding: 50px 60px;
+            padding: 0px 60px 50px 50px;
             /*background-color: rgb(245, 245, 245);*/
             border-radius: 1rem;
             margin-top: 50px;
             max-width: 50%;
-
-
+            flex: 2;
         }
 
         p {
@@ -110,6 +116,34 @@
         .container_image:hover {
             transform: rotate(5deg);
         }
+    }
+
+}
+
+.return-button {
+    position: fixed;
+    background-color: rgba(0, 160, 0, 0.759);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    margin: 15px;
+    cursor: pointer;
+    transition: 0.4s ease-in-out;
+
+    img {
+        height: 80px;
+        object-fit: cover;
+        transition: 0.4s ease-in-out;
+    }
+}
+
+.return-button:hover {
+    background-color: rgba(0, 100, 0, 0.759);
+    border-radius: 3rem;
+
+    img {
+        transform: scale(1.1);
     }
 }
 

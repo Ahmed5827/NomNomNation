@@ -1,13 +1,14 @@
-import { useState } from "react";
-import { useLocation, Link } from "react-router-dom";
+
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./Meal.css";
 import React from "react";
 import YouTube from "react-youtube";
 
 function Meal() {
+    const navigate = useNavigate();
     const location = useLocation();
     const Meal = location.state?.Meal; // Get the meal data from the location state
-
     const [meal, setMeal] = useState(Meal);
     const ingredientNames = Object.keys(Meal.meals[0]).filter(
         (key) => key.includes("strIngredient") && Meal.meals[0][key] !== ""
@@ -88,8 +89,6 @@ function Meal() {
                 <div className="actual_cooking">
 
                     <div className="product">
-                        <h1 className="title">{Meal.meals[0].strMeal}</h1>
-
                         <div>
                             <h2>Ingredients</h2>
                             <ul className="ingredients list-group">
@@ -100,15 +99,6 @@ function Meal() {
                                     </li>
                                 ))}
                             </ul>
-                            <h2>Recipe Instructions</h2>
-                            <ol>
-                                {instructions.map(
-                                    (step, index) =>
-                                        step && ( // Ensure there's no empty step
-                                            <li key={index}>{step}</li> // Trim to clean up spaces
-                                        )
-                                )}
-                            </ol>
                         </div>
                     </div>
 
@@ -116,16 +106,27 @@ function Meal() {
 
 
                     <div className="directions">
-
+                        <h2>Recipe Instructions</h2>
+                        <ol>
+                            {/*list_instructions.map(
+                                (step, index) =>
+                                    step && ( // Ensure there's no empty step
+                                        <li key={index}>{step}</li> // Trim to clean up spaces
+                                    )
+                            )*/}
+                            {instructions}
+                        </ol>
 
                         <p>Cooking made easier</p>
                         <div className="container_youtube">
-                            <YouTube videoId={videoId} onReady={"onReady"} opts={opts} />
+                            <YouTube videoId={videoId} onReady={"onReady"} />
                         </div>
                     </div>
                 </div>
             </div>
-            <Link to="/SearchByName">Back to Search</Link>
+            <div className="return-button" onClick={() => navigate("/SearchByName")}>
+                <img src="return.svg" />
+            </div>
         </>
     );
 }
