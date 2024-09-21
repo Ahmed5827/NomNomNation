@@ -29,6 +29,10 @@ function SearchByName() {
   const handleInputChange = (e) => {
     setSearchedMeal(e.target.value);
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleSearch();
+  }
 
   // Handle search button click
   const handleSearch = async () => {
@@ -46,7 +50,7 @@ function SearchByName() {
     } catch (error) {
       console.error("Error fetching meals:", error);
     } finally {
-      setLoading(false); // Stop loading
+      setTimeout(() => setLoading(false), 2000); // Stop loading
     }
   };
 
@@ -88,16 +92,18 @@ function SearchByName() {
                   className="input-container"
                   style={{ position: "relative" }}
                 >
-                  <input
-                    type="text"
-                    name="name-search"
-                    id="name-search-input"
-                    onChange={handleInputChange}
-                    value={searchedMeal}
-                    placeholder="Type to search..."
-                    autoComplete="off"
-                    style={{ width: "350px" }}
-                  />
+                  <form onSubmit={handleSubmit}>
+                    <input
+                      type="text"
+                      name="name-search"
+                      id="name-search-input"
+                      onChange={handleInputChange}
+                      value={searchedMeal}
+                      placeholder="Type to search..."
+                      autoComplete="off"
+                      style={{ width: "350px" }}
+                    />
+                  </form>
                   <div className="search-icon">
                     <img
                       src="search-icon.svg"
@@ -112,7 +118,12 @@ function SearchByName() {
         </div>
       </nav>
       <div className="container top">
-
+        <h1>Find ingredients For Your Meal</h1>
+        <small>
+          <b>
+            <i>{"What's cooking good looking"}</i>😉
+          </b>
+        </small>
         <div className="searchbar">
         </div>
       </div>
@@ -131,9 +142,6 @@ function SearchByName() {
                     : "No Meal Matches these criteria"}
               </h3>
             </div>
-            <div className="pagination">
-        {totalPages > 1 && <Pagination>{paginationItems}</Pagination>}
-      </div>
             <div className="cards">
               {displayedMeals.map((meal) => (
                 <MealCard
@@ -145,13 +153,13 @@ function SearchByName() {
                 />
               ))}
             </div>
+            <div className="pagination">
+              {totalPages > 1 && <Pagination>{paginationItems}</Pagination>}
+            </div>
           </>
         )}
       </div>
 
-      <div className="pagination">
-        {totalPages > 1 && <Pagination>{paginationItems}</Pagination>}
-      </div>
     </div>
   );
 }

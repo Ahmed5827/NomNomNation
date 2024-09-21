@@ -8,13 +8,14 @@
     border: none;
     padding-left: 14px;
     color: #bd7313;
-
+    height: 100%;
     width: 100%;
   }
 }
 
 .input-container:focus {
   border: 1px solid rgb(153, 153, 153);
+
   input {
     border: 1px solid rgb(153, 153, 153);
   }

@@ -56,7 +56,7 @@ function SearchByIngredient() {
         key={number}
         active={number === currentPage}
         onClick={() => handlePageChange(number)}
-        
+
       >
         {number}
       </Pagination.Item>
@@ -89,6 +89,11 @@ function SearchByIngredient() {
       setSuggestions([]);
     }
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleSearch();
+  }
 
   const handleSearch = async () => {
     setLoading(true); // Start loading
@@ -131,16 +136,18 @@ function SearchByIngredient() {
                   className="input-container"
                   style={{ position: "relative" }}
                 >
-                  <input
-                    type="text"
-                    name="name-search"
-                    id="name-search-input"
-                    onChange={handleChange}
-                    value={Ingredientselected}
-                    placeholder="Type to search..."
-                    autoComplete="off"
-                    style={{ width: "350px" }}
-                  />
+                  <form onSubmit={handleSubmit}>
+                    <input
+                      type="text"
+                      name="name-search"
+                      id="name-search-input"
+                      onChange={handleChange}
+                      value={Ingredientselected}
+                      placeholder="Type to search..."
+                      autoComplete="off"
+                      style={{ width: "350px" }}
+                    />
+                  </form>
                   <div className="search-icon">
                     <img
                       src="search-icon.svg"
@@ -205,20 +212,20 @@ function SearchByIngredient() {
           <p></p>
         ) : (
           <>
-          
+
             <div className="search">
               <h3>
                 {Meals === null
                   ? ""
                   : Meals.length !== 0
-                  ? `${Meals.length} Search Results:`
-                  : "No Meal Matches these criteria"}
+                    ? `${Meals.length} Search Results:`
+                    : "No Meal Matches these criteria"}
               </h3>
-              
+
             </div>
             <div className="pagination">
-        {totalPages > 1 && <Pagination>{paginationItems}</Pagination>}
-      </div>
+              {totalPages > 1 && <Pagination>{paginationItems}</Pagination>}
+            </div>
             <div className="cards">
               {DisplayedMeals.map((M) => (
                 <MealCard
