@@ -20,7 +20,9 @@
     border: 1px solid rgb(153, 153, 153);
   }
 }
-
+.name{
+  margin-top: 3%;
+}
 .search-icon {
   background-color: #333133;
   padding: 3px 4px;

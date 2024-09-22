@@ -5,6 +5,8 @@ import MealCard from "../Card/Card"; // Assuming you have a MealCard component l
 import Pagination from "react-bootstrap/Pagination"; // To handle pagination
 import "./SearchByName.css";
 import CookingLoader from "../CookingLoader/CookingLoader";
+import { IoMdMore } from "react-icons/io";
+import Ingredients from './../../Data/SearchRecomondation/Ingredients';
 
 function SearchByName() {
   const [searchedMeal, setSearchedMeal] = useState(""); // User's search input
@@ -76,58 +78,68 @@ function SearchByName() {
 
   return (
     <div>
-      <nav
-        className="navbar navbar-light"
-        style={{ "background-color": "rgb(51,51,51)" }}
-      >
-        <Link to={"/SearchByIngredient"} className="toname">
-          Search by Ingredient
-        </Link>
+    <nav
+  className="navbar navbar-expand-lg"
+  style={{ backgroundColor: "rgb(51,51,51)", width: "100%" }}
+>
+  <button
+    className="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse" 
+    data-bs-target="#navbarToggle"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span className="navbar-toggler-icon"><IoMdMore style={{ color: "white" }} /></span>
+  </button>
 
-        <div className="mx-auto">
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <div className="searchbar">
-                <div
-                  className="input-container"
-                  style={{ position: "relative" }}
-                >
-                  <form onSubmit={handleSubmit}>
-                    <input
-                      type="text"
-                      name="name-search"
-                      id="name-search-input"
-                      onChange={handleInputChange}
-                      value={searchedMeal}
-                      placeholder="Type to search..."
-                      autoComplete="off"
-                      style={{ width: "350px" }}
-                    />
-                  </form>
-                  <div className="search-icon">
-                    <img
-                      src="search-icon.svg"
-                      alt="search"
-                      onClick={handleSearch}
-                    />
-                  </div>
-                </div>
+  <div className="collapse navbar-collapse" id="navbarSupportedContent">
+    <Link to={"/SearchByIngredient"} className="toname">
+      Search by Ingredient
+    </Link>
+
+    <div className="mx-auto">
+      <ul className="navbar-nav">
+        <li className="nav-item">
+          <div className="searchbar">
+            <div className="input-container" style={{ position: "relative" }}>
+              <form onSubmit={handleSubmit}>
+                <input
+                  type="text"
+                  name="name-search"
+                  id="name-search-input"
+                  onChange={handleInputChange}
+                  value={searchedMeal}
+                  placeholder="Type to search..."
+                  autoComplete="off"
+                  style={{ width: "100%", maxWidth: "350px" }}
+                />
+              </form>
+              <div className="search-icon">
+                <img
+                  src="search-icon.svg"
+                  alt="search"
+                  onClick={handleSearch}
+                />
               </div>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      <div className="container top">
-        <div className="searchbar">
-        </div>
-      </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-      <div>
+      <div >
+
         {loading ? (
-          <div className="search"> <CookingLoader></CookingLoader></div>
+          <div className="search name"> <CookingLoader></CookingLoader></div>
         ) : (
           <>
-            <div className="search">
+            <div className="search name">
               <h3>
                 {meals === null
                   ? ""
@@ -135,6 +147,9 @@ function SearchByName() {
                     ? `${meals.length} Search Results:`
                     : "No Meal Matches these criteria"}
               </h3>
+            </div>
+            <div className="pagination">
+              {totalPages > 1 && <Pagination>{paginationItems}</Pagination>}
             </div>
             <div className="cards">
               {displayedMeals.map((meal) => (
@@ -153,6 +168,7 @@ function SearchByName() {
           </>
         )}
       </div>
+
 
     </div>
   );

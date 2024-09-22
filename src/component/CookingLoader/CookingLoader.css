@@ -1,27 +1,35 @@
 @import url("https://fonts.googleapis.com/css?family=Amatic+SC");
 
+.cooking-loader {
+  position: fixed; /* Fixed positioning to overlay above all content */
+  top: 20%;
+  left: 0;
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* High z-index to be above all other elements */
+}
 
 
 .cooking-loader h1 {
-  position: relative;
-  margin: 0 auto;
-
-  width: 100vw;
+  position: absolute;
+  top: 10%;
+  width: 100%;
   text-align: center;
   font-family: "Amatic SC";
   font-size: 6vh;
   color: #333;
   opacity: 0.75;
   animation: pulse 2.5s linear infinite;
+  z-index: 10000; /* Ensure the text stays on top of everything else */
 }
-
 #cooking {
   position: relative;
-  margin: 0 auto;
-  top: -15vh;
-  width: 50vh;
-  height: 50vh;
- 
+  width: 40vh; /* You can adjust this size */
+  height: 40vh; /* You can adjust this size */
+  top: 0; /* Remove the negative top value */
 }
 
 .bubble {
