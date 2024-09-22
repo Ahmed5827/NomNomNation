@@ -139,7 +139,7 @@ function SearchByIngredient() {
   </button>
 
   <div className="collapse navbar-collapse" id="navbarSupportedContent">
-    <div className="navbar-nav"></div>
+    
     <Link to={"/SearchByName"} className="toname">
       Search by meal
     </Link>
