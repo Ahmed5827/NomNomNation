@@ -3,22 +3,22 @@ import Card from 'react-bootstrap/Card';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import fetchMealDetails from '../../services/fetchMealDetails';
-function MealCard({ title, text, imageUrl , mealid }) {
-    const navigate = useNavigate();
-    const handlegetrecepie = async (id="") => {
-        try {
-            const mealData = await fetchMealDetails(id);
-            navigate("/Meal", { state: { Meal: mealData } }); // Navigate to the meals page with the data as state
-        } catch (error) {
-            console.error("Error fetching random meal:", error);
-        }
-      };
+function MealCard({ title, text, imageUrl, mealid }) {
+  const navigate = useNavigate();
+  const handlegetrecepie = async (id = "") => {
+    try {
+      const mealData = await fetchMealDetails(id);
+      navigate("/Meal", { state: { Meal: mealData } }); // Navigate to the meals page with the data as state
+    } catch (error) {
+      console.error("Error fetching random meal:", error);
+    }
+  };
   return (
-    <Card style={{ width: '100%', height:'100%' }}>
+    <Card >
       <Card.Img variant="top" src={imageUrl} />
       <Card.Body>
         <Card.Title>{title}</Card.Title>
-        
+
         <Button variant="secondary" onClick={() => handlegetrecepie(mealid)}>{text}</Button>
       </Card.Body>
     </Card>
@@ -26,9 +26,9 @@ function MealCard({ title, text, imageUrl , mealid }) {
 }
 // PropTypes validation
 MealCard.propTypes = {
-    title: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
-    imageUrl: PropTypes.string.isRequired,
-    mealid:PropTypes.string.isRequired
-  };
+  title: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string.isRequired,
+  mealid: PropTypes.string.isRequired
+};
 export default MealCard;

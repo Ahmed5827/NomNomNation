@@ -153,3 +153,41 @@
     flex-direction: row;
 
 }
+
+@media (max-width: 768px) {
+    html {
+        overflow-x: hidden;
+    }
+
+    .general_info {
+        flex-direction: column;
+        padding: 15px 0 !important;
+
+        .container_image {
+            img {
+                height: 250px;
+            }
+        }
+
+        .meal_general_info {
+            padding: 5px 20px;
+        }
+    }
+
+    .actual_cooking {
+        flex-direction: column;
+
+        .product {
+            padding: 0 !important;
+            margin: auto;
+            width: 70%;
+
+
+            .ingredients {
+                width: 130% !important;
+                margin: 0 !important;
+            }
+        }
+
+    }
+}

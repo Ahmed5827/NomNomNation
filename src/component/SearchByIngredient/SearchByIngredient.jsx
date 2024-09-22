@@ -119,96 +119,98 @@ function SearchByIngredient() {
   };
 
   return (
-    <div className="container-fluid page" style={{padding:"0" , margin:"0"}}>
-<nav
-  className="navbar navbar-expand-lg"
-  style={{ backgroundColor: "rgb(51,51,51)", width: "100%" }}
->
-  <button
-    className="navbar-toggler"
-    type="button"
-    data-bs-toggle="collapse" 
-    data-bs-target="#navbarToggle"
-    data-toggle="collapse"
-    data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span className="navbar-toggler-icon"><IoMdMore style={{color:"white"}}  /></span>
-  </button>
+    <div className="container-fluid page" style={{ padding: "0", margin: "0" }}>
+      <nav
+        className="navbar navbar-expand-lg"
+        style={{ backgroundColor: "rgb(51,51,51)", width: "100%" }}
+      >
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarToggle"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon">
+            <IoMdMore style={{ color: "white" }} />
+          </span>
+        </button>
 
-  <div className="collapse navbar-collapse" id="navbarSupportedContent">
-    <div className="navbar-nav"></div>
-    <Link to={"/SearchByName"} className="toname">
-      Search by meal
-    </Link>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <div className="navbar-nav"></div>
+          <Link to={"/SearchByName"} className="toname">
+            Search by meal
+          </Link>
 
-    <div className="mx-auto">
-      <ul className="navbar-nav">
-        <li className="nav-item">
-          <div className="searchbar">
-            <div
-              className="input-container"
-              style={{ position: "relative" }}
-            >
-              <form onSubmit={handleSubmit}>
-                <input
-                  type="text"
-                  name="name-search"
-                  id="name-search-input"
-                  onChange={handleChange}
-                  value={Ingredientselected}
-                  placeholder="Type to search..."
-                  autoComplete="off"
-                  style={{ width: "100%", maxWidth: "350px" }}
-                />
-              </form>
-              <div className="search-icon">
-                <img
-                  src="search-icon.svg"
-                  alt="search"
-                  onClick={handleSearch}
-                />
-              </div>
-            </div>
-            {suggestions.length > 0 && (
-              <div className="dropdown show">
-                <ul
-                  className="dropdown-menu show"
-                  style={{
-                    position: "absolute",
-                    top: "20%",
-                    left: "-20%",
-                    zIndex: 1000,
-                    display: "block",
-                    translate: "-70%",
-                  }}
-                >
-                  {suggestions.map((suggestion, index) => (
-                    <li
-                      key={index}
-                      className="dropdown-item"
-                      onClick={() => handleSuggestionClick(suggestion)}
-                      style={{ cursor: "pointer" }}
-                    >
-                      {suggestion}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+          <div className="mx-auto">
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <div className="searchbar">
+                  <div
+                    className="input-container"
+                    style={{ position: "relative" }}
+                  >
+                    <form onSubmit={handleSubmit}>
+                      <input
+                        type="text"
+                        name="name-search"
+                        id="name-search-input"
+                        onChange={handleChange}
+                        value={Ingredientselected}
+                        placeholder="Type to search..."
+                        autoComplete="off"
+                        style={{ width: "100%", maxWidth: "350px" }}
+                      />
+                    </form>
+                    <div className="search-icon">
+                      <img
+                        src="search-icon.svg"
+                        alt="search"
+                        onClick={handleSearch}
+                      />
+                    </div>
+                  </div>
+                  {suggestions.length > 0 && (
+                    <div className="dropdown show">
+                      <ul
+                        className="dropdown-menu show"
+                        style={{
+                          position: "absolute",
+                          top: "20%",
+                          left: "-20%",
+                          zIndex: 1000,
+                          display: "block",
+                          translate: "-70%",
+                        }}
+                      >
+                        {suggestions.map((suggestion, index) => (
+                          <li
+                            key={index}
+                            className="dropdown-item"
+                            onClick={() => handleSuggestionClick(suggestion)}
+                            style={{ cursor: "pointer" }}
+                          >
+                            {suggestion}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </li>
+            </ul>
           </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+        </div>
+      </nav>
 
       <div className="container top">
         <h3>Filters</h3>
 
-        <div className="filters" style={{margin:"auto"}}>
+        <div className="filters" style={{ margin: "auto" }}>
           <hr ></hr>
           <ScrollableDropdown
             items={Category}
@@ -235,8 +237,8 @@ function SearchByIngredient() {
                 {Meals === null
                   ? ""
                   : Meals.length !== 0
-                  ? `${Meals.length} Search Results:`
-                  : "No Meal Matches these criteria"}
+                    ? `${Meals.length} Search Results:`
+                    : "No Meal Matches these criteria"}
               </h3>
             </div>
             <div className="pagination">
