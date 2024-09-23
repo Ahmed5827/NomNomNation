@@ -65,7 +65,6 @@
             padding: 50px 15px 50px 30px;
             flex: 1;
 
-            /*background-color: rgba(108, 108, 211, 0.937);*/
             .title {
                 margin: 0 0 50px 0;
             }
@@ -102,10 +101,8 @@
             min-width: 70%;
             height: fit-content;
             padding: 0px 60px 50px 50px;
-            /*background-color: rgb(245, 245, 245);*/
             border-radius: 1rem;
             margin-top: 50px;
-            max-width: 50%;
             flex: 2;
         }
 
@@ -121,6 +118,7 @@
 }
 
 .return-button {
+    display: block;
     position: fixed;
     background-color: rgba(0, 160, 0, 0.759);
     border-radius: 0.5rem;
@@ -159,35 +157,74 @@
         overflow-x: hidden;
     }
 
-    .general_info {
-        flex-direction: column;
-        padding: 15px 0 !important;
-
-        .container_image {
-            img {
-                height: 250px;
-            }
-        }
-
-        .meal_general_info {
-            padding: 5px 20px;
-        }
+    .return-button {
+        display: none;
     }
 
-    .actual_cooking {
-        flex-direction: column;
+    .container_meal {
+        margin: 0;
+        padding: 0 15px;
+        width: 100%;
+        border-radius: 0;
 
-        .product {
-            padding: 0 !important;
-            margin: auto;
-            width: 70%;
+        .general_info {
+            flex-direction: column;
+            padding: 15px 0;
 
+            .container_image {
+                margin: auto;
+                width: fit-content;
+                border-radius: 1rem;
+                overflow: hidden;
 
-            .ingredients {
-                width: 130% !important;
-                margin: 0 !important;
+                img {
+                    height: 250px;
+                }
+            }
+
+            .meal_general_info {
+                padding: 5px 20px;
+
+                .title {
+                    font-size: 24px;
+                }
             }
         }
 
+        .actual_cooking {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .product {
+                padding: 0 !important;
+                margin: auto;
+                width: 80%;
+
+                .ingredients {
+                    margin: 0;
+                }
+            }
+
+            .directions {
+                width: 92%;
+                margin: 15px auto 150px auto;
+                padding: 15px 30px;
+                border-radius: 1rem;
+                box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.5);
+
+                ol {
+                    padding: 0 10px;
+                }
+
+                .container_youtube iframe {
+                    width: 100%;
+                    height: 300px;
+
+                }
+
+            }
+
+        }
     }
 }
