@@ -113,9 +113,9 @@ function SearchByIngredient() {
   };
 
   const handleSuggestionClick = (suggestion) => {
-    setIngredient(suggestion); // Set input field with the clicked suggestion
-    setSuggestions([]); // Clear suggestions
-    setIsSuggestionClicked(true); // Mark that a suggestion was clicked
+    setIngredient(suggestion);
+    setSuggestions([]);
+    setIsSuggestionClicked(true);
   };
 
   return (
@@ -161,7 +161,7 @@ function SearchByIngredient() {
                         id="name-search-input"
                         onChange={handleChange}
                         value={Ingredientselected}
-                        placeholder="Type to search..."
+                        placeholder="Nhebek Bouhmiiddd"
                         autoComplete="off"
                         style={{ width: "100%", maxWidth: "350px" }}
                       />

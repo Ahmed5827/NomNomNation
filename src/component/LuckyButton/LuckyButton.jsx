@@ -2,7 +2,7 @@ import "./LuckyButton.css"
 import { GiShamrock } from "react-icons/gi";
 import fetchRandomMeal from "../../services/fetchRandomMeal";
 import { useNavigate } from "react-router-dom";
-function LuckyButton(){
+function LuckyButton() {
     const navigate = useNavigate();
 
     const handleClick = async () => {
@@ -15,9 +15,9 @@ function LuckyButton(){
     };
 
 
-    return(<>
+    return (<>
         <button id="LuckyButton" onClick={handleClick}> <GiShamrock /></button>
-        
+
     </>)
 }
 //on click get a random recepie and display it

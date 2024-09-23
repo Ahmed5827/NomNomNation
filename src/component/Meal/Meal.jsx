@@ -1,14 +1,11 @@
-import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./Meal.css";
-import React from "react";
 import YouTube from "react-youtube";
 
 function Meal() {
   const navigate = useNavigate();
   const location = useLocation();
   const Meal = location.state?.Meal; // Get the meal data from the location state
-  const [meal, setMeal] = useState(Meal);
   const ingredientNames = Object.keys(Meal.meals[0]).filter(
     (key) => key.includes("strIngredient") && Meal.meals[0][key] !== ""
   );
@@ -23,9 +20,6 @@ function Meal() {
   // Used later to construct a link to a youtube video with a thumbnail image
   const videoUrl = Meal.meals[0]?.strYoutube;
   const videoId = videoUrl?.split("?v=")[1];
-  const thumbnailUrl = videoId
-    ? `https://img.youtube.com/vi/${videoId}/0.jpg`
-    : "";
 
   if (!Meal) {
     return <p>No Meal data available.</p>;
@@ -57,10 +51,6 @@ function Meal() {
   };
 
   const instructions = processInstructions(Meal.meals[0].strInstructions);
-  const opts = {
-    height: "180",
-    width: "320",
-  };
   return (
     <>
       <div className="container_meal">
@@ -91,12 +81,12 @@ function Meal() {
                   (key) =>
                     // Only render the list item if both the key and its associated value are not null/empty
                     Meal?.meals[0]?.[key]?.trim() &&
-                    Meal?.meals[0]?.[ingredients[key]]?.trim() ? (
+                      Meal?.meals[0]?.[ingredients[key]]?.trim() ? (
                       <li className="ingredient list-group-item" key={key}>
                         <div>
                           {/* Display the key with a colon if it exists and is not empty */}
                           {Meal?.meals[0]?.[key] &&
-                          Meal.meals[0][key].trim() !== ""
+                            Meal.meals[0][key].trim() !== ""
                             ? `${Meal.meals[0][key]} :`
                             : null}
                         </div>
@@ -104,13 +94,13 @@ function Meal() {
                         <div>
                           {/* Display the ingredient or "As needed" if null/empty */}
                           {Meal?.meals[0]?.[ingredients[key]] &&
-                          Meal.meals[0][ingredients[key]].trim()
+                            Meal.meals[0][ingredients[key]].trim()
                             ? Meal.meals[0][ingredients[key]].trim().split(" ")
-                                .length > 2
+                              .length > 2
                               ? Meal.meals[0][ingredients[key]]
-                                  .split(" ")
-                                  .slice(1)
-                                  .join(" ")
+                                .split(" ")
+                                .slice(1)
+                                .join(" ")
                               : Meal.meals[0][ingredients[key]]
                             : "As needed"}
                         </div>
