@@ -161,7 +161,7 @@ function SearchByIngredient() {
                         id="name-search-input"
                         onChange={handleChange}
                         value={Ingredientselected}
-                        placeholder="Nhebek Bouhmiiddd"
+                        placeholder="Search by ingredient..."
                         autoComplete="off"
                         style={{ width: "100%", maxWidth: "350px" }}
                       />
