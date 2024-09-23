@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import SearchByIngredient from "./../SearchByIngredient/SearchByIngredient";
 import SearchByName from "../SearchByName/SearchByName";
@@ -8,16 +8,17 @@ function Home() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<SearchByIngredient></SearchByIngredient>} />
+        <Route path="/" element={<Navigate to={"/SearchByIngredient"} />} />
         <Route
           path="/SearchByIngredient"
           element={<SearchByIngredient></SearchByIngredient>}
         />
         <Route path="/SearchByName" element={<SearchByName></SearchByName>} />
         <Route path="/Meal" element={<Meal></Meal>} />
-        <Route path="*" element={<NotFound></NotFound>} />
+        <Route path="/not-found" element={<NotFound></NotFound>} />
+        <Route path="/*" element={<Navigate to={"/not-found"} />} />
       </Routes>
-      
+
     </>
   );
 }
