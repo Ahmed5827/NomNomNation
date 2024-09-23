@@ -22,7 +22,7 @@ async function fetchMealDetails(mealId) {
 
   } catch (error) {
     console.error('Error fetching meal details:', error);
-    throw error; // Re-throw the error for the caller to handle
+    throw error; 
   }
 }
 
