@@ -140,41 +140,52 @@ body {
   background-color: #f0f0f0;
 }
 
+/* .cards section with grid layout and responsive background image */
 .cards {
   display: grid;
-  grid-template-columns: repeat(4, minmax(100px, 1fr));
-  /* 3 columns of equal width */
-  justify-content: center;
-  /* Horizontal centering */
+  grid-template-columns: repeat(4, minmax(100px, 1fr)); /* 4 columns */
+  justify-content: center; /* Horizontal centering */
   align-items: center;
-  gap: 15px;
+  gap: 15px; /* Space between grid items */
   margin-bottom: 4%;
   padding: 1%;
+  background-image: url('Cpu.png'); /* Path to your image */
+  background-size: contain; /* Image resizes to cover the entire area */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat;
+  width: 100%;
+  min-height: 80vh; /* Allows height to adjust with content */
+  height: auto; /* Allow the height to adjust based on content */
+  width: auto;
 }
 
+/* Responsive styling for smaller screens */
 @media (max-width: 768px) {
+  /* Flexbox layout for smaller screens */
   .cards {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Stack cards vertically */
     margin: auto;
-
-    .card {
-      width: 70vw;
-
-      img {
-        width: 70vw;
-      }
-    }
-
+    background-size: contain; /* Adjust image size for small screens */
   }
 
+  /* Adjust card size for smaller screens */
+  .cards .card {
+    width: 70vw; /* Card width based on viewport width */
+  }
+
+  /* Adjust image inside .card to fit */
+  .cards .card img {
+    width: 70vw; /* Image width based on viewport width */
+  }
+
+  /* Stack .search elements vertically */
   .search {
     flex-direction: column;
-    /* Stack elements on smaller screens */
     align-items: flex-start;
-    /* Align items to the start */
   }
 }
+
 
 
 .search {
@@ -185,6 +196,7 @@ body {
   padding: 35px 0 0 0;
   margin-bottom: 2%;
   margin: auto;
+
 }
 
 .pagination {
