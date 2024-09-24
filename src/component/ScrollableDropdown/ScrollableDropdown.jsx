@@ -9,14 +9,14 @@ const ScrollableDropdown = ({ items, defaultText, onSelect }) => {
   const handleSelect = (item) => {
     setSelectedItem(item.label); // Update the button text
     if (onSelect) {
-      onSelect(item); // Optional: Call the onSelect callback if provided
+      onSelect(item); 
     }
   };
 
   return (
     <Dropdown>
       <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-        {selectedItem} {/* Display the currently selected item */}
+        {selectedItem} 
       </Dropdown.Toggle>
 
       <Dropdown.Menu
@@ -27,7 +27,7 @@ const ScrollableDropdown = ({ items, defaultText, onSelect }) => {
       >
         {items.length > 0 ? (
           <>
-            {/* First item with a line underneath */}
+            
             <Dropdown.Item
               key={0}
               onClick={() => handleSelect(items[0])}
@@ -35,8 +35,8 @@ const ScrollableDropdown = ({ items, defaultText, onSelect }) => {
             >
               {items[0].label}
             </Dropdown.Item>
-            <div className="dropdown-divider"></div> {/* Line divider */}
-            {/* Remaining items */}
+            <div className="dropdown-divider"></div> 
+            
             {items.slice(1).map((item, index) => (
               <Dropdown.Item
                 key={index + 1}
