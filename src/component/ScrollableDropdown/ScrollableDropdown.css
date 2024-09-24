@@ -9,12 +9,12 @@
   height: 100vh;
 }
 
-/* Style for the first dropdown item */
+
 .first-item {
   font-weight: bold;
 }
 
-/* Line to separate the first item */
+
 .dropdown-divider {
   height: 1px;
   background-color: #e0e0e0;
